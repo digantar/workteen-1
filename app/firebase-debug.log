@@ -1,0 +1,27 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.2
+[debug] Platform:     darwin
+[debug] Node Version: v4.4.2
+[debug] Time:         Wed Jul 13 2016 15:44:14 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[warn] ⚠  No Firebase project directory detected. Serving static content from /Users/aayushchadha/Desktop/projects/wt_data_add
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] CLI Version:  3.0.2
+[debug] Platform:     darwin
+[debug] Node Version: v4.4.2
+[debug] Time:         Wed Jul 13 2016 15:46:41 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/aayushchadha/Desktop/projects/wt_data_add
+[info] Public Directory: app
+[info] 
+[info] Server listening at: http://localhost:5000

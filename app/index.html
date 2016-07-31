@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Data Addition Demo</title>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="description" content="Prototyping database addition for WT2.0">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.blue_grey-orange.min.css">
+  	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  	<link rel="stylesheet" href="main.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">	
+	<!-- Home Page -->
+	<section id="splash-page">
+
+		<!-- <h3 class="logo"><i class="material-icons">insert_comment</i>Organisational Login</h3>
+		<div>
+			<button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in with Google</button>
+		</div> -->
+    <div class="signup-box">
+            <div class="mdl-grid splash-grid ">
+              
+              <div class="mdl-cell mdl-cell--4-offset mdl-cell--4-col">
+                  <div class="mdl-card mdl-shadow--6dp">
+                            <div class="mdl-card__title mdl-color--deep-orange-500 mdl-color-text--white">
+                                <h2 class="mdl-card__title-text">WorkTeen</h2>
+                            </div>
+                        <div class="mdl-card__supporting-text">
+                                <form action="#">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="text" id="email" />
+                                        <label class="mdl-textfield__label" for="username">Email</label>
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <input class="mdl-textfield__input" type="password" id="userpass" />
+                                        <label class="mdl-textfield__label" for="userpass">Password</label>
+                                    </div>
+                                    <button id = "ep-sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--grey-800 login-button">Log in <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                                    <button id = "fb-sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-color--blue-900 fb-button">
+                                  Sign in with <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                                  </button>
+                                  <button id = "google-sign-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-color--red-500  g-button">
+                                  Sign in with <i class="fa fa-google" aria-hidden="true"></i>
+                                  </button>
+                                </form>
+                            </div>
+                            <div class="skip">
+                                <a href="#"><p>Skip</p></a>
+                            </div>
+                    </div>
+              </div>
+            </div>
+    </div> <!-- Sign Up Box -->
+	</section>
+	<!-- Home Page Ends -->
+
+	<!-- Account Page Header -->
+	<header class="header mdl-layout__header mdl-color-text--white mdl-color--red-900">
+		<div class="mdl-layout__header-row titlebar">
+      		<h3 class="logo">Le Organisation Name</h3>
+    	</div>
+    	<div class="tab mdl-layout__header-row mdl-color--red-A100">
+    		<div class="mdl-tab">
+
+    			<div id = "public-feed" class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
+    				<i class="material-icons">view_stream</i> Feed
+    			</div>
+
+    			<div id = "my-feed" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
+    				<i class="material-icons">art_track</i> Opportunities
+    			</div>
+
+    			<button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
+          			<i class="material-icons">add_box</i>
+        	</button>
+
+    			<button id="sign-out" class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">exit_to_app</i>
+          </button>
+          
+    		</div>
+    	</div>
+	</header>
+	<!-- Account Page Header Ends -->
+	<!-- Opportunity Form -->
+	<main class="mdl-layout__content">
+
+	<section class="mdl-grid content" id = "add-opportunity" style="display:none;">
+		<div class="mdl-cell mdl-cell--12-col">
+			<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet
+                  mdl-cell--12-col-desktop">
+				<div class="mdl-card_title mdl-color--red-400 mdl-color-text--white">
+					<h2 class="mdl-card__title-text">Post a new opportunity</h2>
+				</div>
+				<div class="mdl-card__supporting-text">
+					<form id = "opportunity-form" action="#">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-title">
+                  			<label class="mdl-textfield__label" for="new-opportunity-title">Title
+                  			</label>
+                		</div>
+                		
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-organisation">
+                  			<label class="mdl-textfield__label" for="new-opportunity-organisation">Organisation
+                  			</label>
+                		</div>
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-description">
+                  			<label class="mdl-textfield__label" for="new-opportunity-description">Description
+                  			</label>
+                		</div>
+                		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                  			Add opportunity.
+                		</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="mdl-grid content" id="public-posts-list" style="display:none">
+      <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+      </div>
+    </section>
+    <section class="mdl-grid content" id="my-posts-list" style="display:none">
+      <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+      </div>
+    </section>
+		
+	</main>
+</div>
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDifK757qQOwlFe0GEH0854oVA_oextAdo",
+    authDomain: "workteenv2.firebaseapp.com",
+    databaseURL: "https://workteenv2.firebaseio.com",
+    storageBucket: "workteenv2.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="../scripts/main.js"></script>
+</body>
+</html>

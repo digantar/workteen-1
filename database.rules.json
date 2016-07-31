@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "users": {
+      "$userid": {
+        ".read": "auth !== null",
+        ".write": "auth !== null"
+      }
+    },
+    "opportunities": {
+    	".write": "auth !== null && auth.provider === 'password'"
+    }
+  }
+}
+
