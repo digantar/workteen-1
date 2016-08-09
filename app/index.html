@@ -103,15 +103,52 @@
                   			<label class="mdl-textfield__label" for="new-opportunity-title">Title
                   			</label>
                 		</div>
-                		
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-category">
+                  			<label class="mdl-textfield__label" for="new-opportunity-category">Category
+                  			</label>
+                		</div>
+
                 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   			<input class="mdl-textfield__input" type="text" id="new-opportunity-organisation">
                   			<label class="mdl-textfield__label" for="new-opportunity-organisation">Organisation
                   			</label>
                 		</div>
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-total-commitment">
+                  			<label class="mdl-textfield__label" for="new-opportunity-total-commitment">Total Commitment
+                  			</label>
+                		</div>
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-activity-status-/-date">
+                  			<label class="mdl-textfield__label" for="new-opportunity-activity status-/-date">Activity Status / Date
+                  			</label>
+                		</div>
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-address">
+                  			<label class="mdl-textfield__label" for="new-opportunity-address">Address
+                  			</label>
+                		</div>
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-commitment">
+                  			<label class="mdl-textfield__label" for="new-opportunity-commitment"> Commitment
+                  			</label>
+                		</div>
+                		
                 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                   			<input class="mdl-textfield__input" type="text" id="new-opportunity-description">
                   			<label class="mdl-textfield__label" for="new-opportunity-description">Description
+                  			</label>
+                		</div>
+
+                		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  			<input class="mdl-textfield__input" type="text" id="new-opportunity-email">
+                  			<label class="mdl-textfield__label" for="new-opportunity-email">Email
                   			</label>
                 		</div>
                 		<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
@@ -143,6 +180,9 @@
     storageBucket: "workteenv2.appspot.com",
   };
   firebase.initializeApp(config);
+  	firebase.database().ref().on('value', function(snapshot) {
+  		console.log(snapshot.val());
+	});
 </script>
 <script src="../scripts/main.js"></script>
 </body>

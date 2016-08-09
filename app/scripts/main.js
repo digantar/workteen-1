@@ -5,13 +5,14 @@ var opportunityForm = document.getElementById('opportunity-form');
 
 //All form elements
 var opportunityTitle = document.getElementById('new-opportunity-title');
-// var opportunityCategory = document.getElementById('new-opportunity-category');
+var opportunityCategory = document.getElementById('new-opportunity-category');
 var opportunityOrganisation = document.getElementById('new-opportunity-organisation');
-// var opportunityDate = document.getElementById('new-opportunity-date');
-// var opportunityHours = document.getElementById('new-opportunity-hours');
-// var opportunityAddress = document.getElementById('new-opportunity-Address');
-// var opportunityCommitment = document.getElementById('new-opportunity-commitment');
+var opportunityTotalCommitment = document.getElementById('new-opportunity-total-commitment');
+var opportunityActivityStatusDate = document.getElementById('new-opportunity-activity-status-/-date');
+var opportunityAddress = document.getElementById('new-opportunity-address');
+var opportunityCommitment = document.getElementById('new-opportunity-commitment');
 var opportunityDescription = document.getElementById('new-opportunity-description');
+var opportunityEmail = document.getElementById('new-opportunity-email');
 
 //Miscellaneous elements
 var splashPage = document.getElementById('splash-page');
@@ -29,20 +30,33 @@ var password = document.getElementById('userpass');
 /**
 Pushing opportunity to database/
 */
-function postOpportunity(uid, username, title, organisation, description ) {
+function postOpportunity(
+  uid,
+  username,
+  title,
+  category,
+  totalCommitment,
+  activityStatusDate,
+  address,
+  commitment,
+  organisation,
+  description
+  ) {
 	var oppData = {
 		organisation: username,
 		uid: uid,
-		title: title, 
-		organisation: organisation, 
-		description: description 
-
+		title: title,
+    category: category,
+    totalCommitment: totalCommitment,
+    activityStatusDate: activityStatusDate,
+    address: address,
+    commitment: commitment,
+		organisation: organisation,
+    description: description
 	};
 
 	// new key for opportunity
 	var newOppKey = firebase.database().ref().child('opportunities').push().key;
-  console.log("I worked in posting");
-	//writing data to public and user feed
 	var updates = {};
 	updates['/opportunities/' + newOppKey] = oppData;
 	updates['/user-opp/' + uid + '/' + newOppKey] = oppData;
@@ -52,7 +66,7 @@ function postOpportunity(uid, username, title, organisation, description ) {
 }
 
 function createOppElement(oppId, title, organisation, description ) {
-	var uid = firebase.auth().currentUser.uid;
+	var uid = getUser().uid;
   console.log("Opportunity Created");
 	var html ='<div class="post mdl-cell mdl-cell--12-col ' +
                   	'mdl-cell--6-col-tablet mdl-grid">' +
@@ -94,7 +108,7 @@ function createOppElement(oppId, title, organisation, description ) {
 }
 
 function startDatabaseQueries() {
-	var myUserId = firebase.auth().currentUser.uid;
+	var myUserId = getUser().uid;
 	var recentPostsRef = firebase.database().ref('opportunities').limitToLast(100);
 	var userPostsRef = firebase.database().ref('user-opp/' + myUserId);
 
@@ -104,7 +118,7 @@ function startDatabaseQueries() {
 			containerElement.insertBefore(
 				createOppElement(data.key, data.val().title, data.val().organisation, data.val().description), 
 				containerElement.firstChild);
-      console.log("I fetched posts");
+      //console.log("I fetched posts");
 		});
 	};
 	fetchPosts(recentPostsRef, publicPostsSection);
@@ -115,8 +129,14 @@ function writeUserData(userId, name, email) {
     username: name,
     email: email
   });
-  console.log("I wrote user data")
+  //console.log("I wrote user data")
 }
+
+  function getUser() {
+    var user = firebase.auth().currentUser;
+    return user;
+  }
+
 window.addEventListener('load', function() {
   // Bind Email and Password Sign in button.
   
@@ -153,8 +173,6 @@ window.addEventListener('load', function() {
   });
 
   var user = firebase.auth().currentUser;
- 
-  
   
   // Bind sign out button
   signOutButton.addEventListener('click', function(){
@@ -202,13 +220,23 @@ window.addEventListener('load', function() {
       opportunityDescription.value = '';
       console.log("Reporting from submit function");
       // [START single_value_read]
-      var userId = firebase.auth().currentUser.uid;
+      var userId = getUser().uid;
       firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
         var username = snapshot.val().username;
         // [START_EXCLUDE]
-        postOpportunity(firebase.auth().currentUser.uid, firebase.auth().currentUser.displayName,
-            opportunityTitle.value, opportunityOrganisation.value, postText).then(function() {
-              publicFeedMenu.click();
+        postOpportunity(
+            userId,
+            username,
+            opportunityTitle.value,
+            opportunityCategory.value,
+            opportunityTotalCommitment.value,
+            opportunityActivityStatusDate.value,
+            opportunityAddress.value,
+            opportunityCommitment.value,
+            opportunityOrganisation.value,
+            postText
+            ).then(function() {
+              //publicFeedMenu.click();
             });
         // [END_EXCLUDE]
       });
@@ -242,4 +270,5 @@ window.addEventListener('load', function() {
     opportunityOrganisation.value = '';
   };
   publicFeedMenuButton.onclick();
+
 }, false);
